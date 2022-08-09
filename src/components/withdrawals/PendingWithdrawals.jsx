@@ -10,6 +10,7 @@ import { useOTPConfirm } from '../../common/router/OTPConfirm'
 import { useSnackbar } from '../../common/router/Snackbar'
 import WithdrawalCard from './WithdrawalCard'
 
+
 const PendingWithdrawals = props => {
     const withdrawals = useWithdrawals()
     const login = useLogin()
@@ -32,7 +33,7 @@ const PendingWithdrawals = props => {
 
     const snackbar = useSnackbar()
     const send = async (w) => {
-        if (await withdrawals.send(w)) {
+        if (await withdrawals.serve(w)) {
             snackbar.showSuccess('Successfully withdrawan.')
         } else {
             snackbar.showError('Unable to approve this withdrawal! May be the balance is insufficient!')
