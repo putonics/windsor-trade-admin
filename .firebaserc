@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "windsor-trade"
+  },
+  "targets": {
+    "windsor-trade": {
+      "hosting": {
+        "admin-windsor-trade": [
+          "admin-windsor-trade"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
