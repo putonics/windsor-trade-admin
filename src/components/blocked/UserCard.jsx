@@ -45,37 +45,28 @@ const UserCard = (props) => {
           <div className="text-red-800">Id proof not given.</div>
         )}
       </div>
-      <div className="flex items-center justify-between gap-2 m-2 p-2 border border-stone-300 rounded-lg">
-        <Select
+      <div className="flex items-center justify-center gap-2 m-2 p-2">
+        {/* <Select
+                    disabled={props.busy}
+                    label='Select package'
+                    value={amount}
+                    onChange={text => setAmount(+text)}
+                    options={[
+                        { label: '$15', value: 15 },
+                        { label: '$100', value: 100 },
+                        { label: '$250', value: 250 },
+                        { label: '$500', value: 500 },
+                    ]}
+                />
+                <div className='mt-3'> */}
+        <Button
           disabled={props.busy}
-          label="Select package"
-          value={amount}
-          onChange={(text) => setAmount(+text)}
-          options={[
-            { label: "$15", value: 15 },
-            { label: "$100", value: 100 },
-            { label: "$250", value: 250 },
-            { label: "$500", value: 500 },
-          ]}
-        />
-        <div className="mt-3">
-          <Button
-            disabled={props.busy}
-            color="green"
-            onClick={() => props.onSend(amount)}
-          >
-            Add package
-          </Button>
-        </div>
-        <div className="mt-3">
-          <Button
-            disabled={props.busy}
-            color="orange"
-            // onClick={() => props.onSend(amount)}
-          >
-            Block
-          </Button>
-        </div>
+          color="red"
+          //   onClick={() => props.onSend(amount)}
+        >
+          Click to unblock
+        </Button>
+        {/* </div> */}
       </div>
     </div>
   )

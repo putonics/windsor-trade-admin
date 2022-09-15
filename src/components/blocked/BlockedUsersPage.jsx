@@ -9,19 +9,19 @@ import { useOTPConfirm } from "../../common/router/OTPConfirm"
 import { useSnackbar } from "../../common/router/Snackbar"
 import UserCard from "./UserCard"
 
-const Dash = (props) => {
+const BlockedUsersPage = (props) => {
   const login = useLogin()
   const users = useUsers()
   const [busy, setBusy] = React.useState(false)
   const snackbar = useSnackbar()
 
   React.useEffect(() => {
-    if (!users.list.length || !users.list[0].active) {
+    if (!users.list.length || users.list[0].active) {
       snackbar.showInfo("Loading...")
       setBusy(true)
-      users.loadNewUsers(login.info).finally(() => setBusy(false))
+      users.loadInactiveUsers(login.info).finally(() => setBusy(false))
     } else {
-      snackbar.showInfo(users.list.length + " pending approval.")
+      snackbar.showInfo(users.list.length + " blocked users.")
     }
   }, [users])
 
@@ -116,4 +116,4 @@ const Dash = (props) => {
   )
 }
 
-export default Dash
+export default BlockedUsersPage
