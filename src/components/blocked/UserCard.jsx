@@ -1,7 +1,5 @@
 import React from "react"
-import assets from "../../assets"
 import Button from "../../common/components/Button"
-import Select from "../../common/components/Select"
 import User from "../../common/redux/classes/User"
 import style from "../../common/style"
 
@@ -10,8 +8,6 @@ import style from "../../common/style"
  */
 const UserCard = (props) => {
   const { user } = props
-
-  const [amount, setAmount] = React.useState(15)
 
   return (
     <div className={style("p-2").card()}>
