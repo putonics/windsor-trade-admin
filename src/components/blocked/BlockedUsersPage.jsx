@@ -65,6 +65,13 @@ const BlockedUsersPage = (props) => {
                 user={u}
                 key={u.docid}
                 busy={sending}
+                onUnblock={() =>
+                  users.unblock(
+                    u,
+                    () => snackbar.showSuccess("Successfully Unblocked"),
+                    () => snackbar.showError("Unable to unblock")
+                  )
+                }
                 onSend={(amount) => {
                   setSending(true)
                   confirm.open(

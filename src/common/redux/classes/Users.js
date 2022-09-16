@@ -30,7 +30,6 @@ export default class Users {
   loadNewUsers = async (user) => {
     const users = await api("/user/new", new User(user).json())
     this.list = users.map((u) => new User(u))
-    this.list.forEach((u) => console.log(u.packages))
     this.dispatchUsers()
   }
 
@@ -51,6 +50,38 @@ export default class Users {
     user.packages.push(new Package({ amount, index: user.packages.length }))
     // console.log(user.json())
     const receivedUser = new User(await api("/admin/package", user.json()))
+    if (receivedUser.active) {
+      this.list = this.list.filter((u) => u.docid !== receivedUser.docid)
+      this.dispatchUsers()
+      onSuccess()
+    } else {
+      onError()
+    }
+  }
+
+  /**
+   * @param {User} user
+   */
+  block = async (user, onSuccess = () => {}, onError = () => {}) => {
+    if (!user.active) return
+    user.active = false
+    const receivedUser = new User(await api("/user/block", user.json()))
+    if (!receivedUser.active) {
+      this.list = this.list.filter((u) => u.docid !== receivedUser.docid)
+      this.dispatchUsers()
+      onSuccess()
+    } else {
+      onError()
+    }
+  }
+
+  /**
+   * @param {User} user
+   */
+  unblock = async (user, onSuccess = () => {}, onError = () => {}) => {
+    if (user.active) return
+    user.active = true
+    const receivedUser = new User(await api("/user/unblock", user.json()))
     if (receivedUser.active) {
       this.list = this.list.filter((u) => u.docid !== receivedUser.docid)
       this.dispatchUsers()

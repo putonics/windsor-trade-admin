@@ -6,7 +6,7 @@ import User from "../../common/redux/classes/User"
 import style from "../../common/style"
 
 /**
- * @param {{busy:boolean, user: User, onSend: (amount:number)=>{}}} props
+ * @param {{busy:boolean, user: User, onSend: (amount:number)=>{}, onBlock:()=>{}}} props
  */
 const UserCard = (props) => {
   const { user } = props
@@ -22,10 +22,10 @@ const UserCard = (props) => {
         />
         <div className="gap-y-1">
           <div className="text-slate-900 font-semibold">{user.name}</div>
-          <div className="text-slate-900 font-extrabold">{user.docid}</div>
-          <div className="text-slate-900 text-xs">{user.email}</div>
-          <div className="text-slate-900">
-            {user.countrycode}-{user.mobile}
+          <div className="text-slate-400 text-xs">{user.email}</div>
+          <div className="text-slate-600 font-extrabold">{user.docid}</div>
+          <div className="text-slate-800">
+            +{user.countrycode}-{user.mobile}
           </div>
         </div>
       </div>
@@ -58,24 +58,22 @@ const UserCard = (props) => {
             { label: "$500", value: 500 },
           ]}
         />
-        <div className="mt-3">
-          <Button
-            disabled={props.busy}
-            color="green"
-            onClick={() => props.onSend(amount)}
-          >
-            Add package
-          </Button>
-        </div>
-        <div className="mt-3">
-          <Button
-            disabled={props.busy}
-            color="orange"
-            // onClick={() => props.onSend(amount)}
-          >
-            Block
-          </Button>
-        </div>
+        <Button
+          disabled={props.busy}
+          color="emerald"
+          onClick={() => props.onSend(amount)}
+          className="text-xs"
+        >
+          Add PKG
+        </Button>
+        <Button
+          disabled={props.busy}
+          color="gray"
+          onClick={props.onBlock}
+          className="text-xs"
+        >
+          Block
+        </Button>
       </div>
     </div>
   )
