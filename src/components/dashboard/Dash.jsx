@@ -66,10 +66,17 @@ const Dash = (props) => {
                 key={u.docid}
                 busy={sending}
                 onBlock={() =>
-                  users.block(
-                    u,
-                    () => snackbar.showSuccess("Blocked successfully"),
-                    () => snackbar.showError("Unable to block")
+                  confirm.open(
+                    <div className="p-2 text-slate-900 text-xl text-center font-extrabold">
+                      Are you sure?
+                    </div>,
+                    () =>
+                      users.block(
+                        u,
+                        () => snackbar.showSuccess("Blocked successfully"),
+                        () => snackbar.showError("Unable to block")
+                      ),
+                    () => {}
                   )
                 }
                 onSend={(amount) => {
