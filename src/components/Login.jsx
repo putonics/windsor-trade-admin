@@ -47,7 +47,7 @@ const Login = (props) => {
         <div className="p-6">
           <div className="text-xl font-extrabold text-slate-900 mb-6">
             Login here
-            <div className="text-sm">V 3.2.0</div>
+            <div className="text-sm">V 3.3.0</div>
           </div>
           <Form onSubmit={onSubmit}>
             <div className="flex flex-col gap-4">
